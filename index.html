@@ -388,6 +388,7 @@
             flex-wrap: wrap;
         }
 
+
         .project-tech span {
             background: white;
             border: 1px solid var(--border);
@@ -395,6 +396,40 @@
             border-radius: 6px;
             font-size: 0.8rem;
             color: var(--text-secondary);
+        }
+
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 10px;
+            margin: 4px 0 16px;
+        }
+
+        .project-gallery figure {
+            margin: 0;
+        }
+
+        .project-gallery img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            object-position: top center;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: #0f172a;
+            display: block;
+        }
+
+        .project-gallery img.contain {
+            object-fit: contain;
+            background: #0b1220;
+        }
+
+        .project-gallery figcaption {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 6px;
+            text-align: center;
         }
 
         /* About */
@@ -456,6 +491,14 @@
             .grades-table th, .grades-table td {
                 padding: 8px 10px;
             }
+
+            .project-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .project-gallery img {
+                height: 180px;
+            }
         }
 
         /* Print styles */
@@ -495,7 +538,7 @@
             你好！我是<span class="highlight">金凯奇</span>，温州商学院信息工程学院2026届计算机科学与技术专业毕业生。
             我热衷于<span class="highlight">全栈开发</span>与<span class="highlight">AI应用</span>，具备从零搭建完整Web系统的能力：
             毕业设计基于改进的<span class="highlight">TextRank算法</span>实现了新闻自动摘要系统（Vue 3 + Spring Boot + Python），
-            独立开发了基于<span class="highlight">Claude API</span>的智能音乐电台系统 pixwave。
+            独立开发了智能音乐电台 <span class="highlight">PixWave</span>（Node.js，默认 React 18 PWA，另有 Vue 3 前端）。
             在校期间均分<span class="highlight">81.13</span>，绩点<span class="highlight">3.2</span>，核心课程成绩优异。
             我热爱用技术解决实际问题，期待在软件开发岗位上创造价值。
         </p>
@@ -532,6 +575,7 @@
                 <h4>🌐 前端开发</h4>
                 <div class="skill-tags">
                     <span class="skill-tag excellent">Vue 3</span>
+                    <span class="skill-tag good">React 18</span>
                     <span class="skill-tag good">Element Plus</span>
                     <span class="skill-tag good">Vite</span>
                     <span class="skill-tag good">ECharts</span>
@@ -545,7 +589,8 @@
                     <span class="skill-tag excellent">Spring Boot</span>
                     <span class="skill-tag good">Node.js</span>
                     <span class="skill-tag good">MyBatis-Plus</span>
-                    <span class="skill-tag good">JWT 认证</span>
+                    <span class="skill-tag good">JWT 签发</span>
+                    <span class="skill-tag good">BCrypt</span>
                     <span class="skill-tag good">RESTful API</span>
                     <span class="skill-tag">WebSocket</span>
                 </div>
@@ -583,14 +628,28 @@
                 <a href="https://github.com/jaykayelo/news-summary-system" target="_blank">GitHub ↗</a>
             </h4>
             <p class="project-desc">
-                毕业设计项目 —— 基于改进 TextRank 算法的新闻摘要自动生成系统，全栈独立开发。
+                毕业设计项目 —— 基于改进 TextRank 算法的中文新闻摘要系统，全栈独立开发。
             </p>
+            <div class="project-gallery">
+                <figure>
+                    <img src="assets/projects/news-summary-input.webp" alt="新闻摘要系统：在首页粘贴中文新闻原文">
+                    <figcaption>粘贴新闻正文，准备生成摘要</figcaption>
+                </figure>
+                <figure>
+                    <img src="assets/projects/news-summary-result.webp" alt="新闻摘要系统：摘要结果与句子权重图">
+                    <figcaption>摘要结果、关键词与句子权重</figcaption>
+                </figure>
+                <figure>
+                    <img src="assets/projects/news-summary-wordcloud.webp" alt="新闻摘要系统：关键词词云">
+                    <figcaption>关键词词云等四维可视化</figcaption>
+                </figure>
+            </div>
             <ul class="project-highlights">
-                <li>改进 TextRank 算法：融入位置权重增强（标题 1.5×、首段 1.3×、末段 1.1×），针对中文新闻倒金字塔结构优化</li>
-                <li>四维可视化可解释性：句子权重柱状图、语义相似度热力图、句子网络关系图、关键词词云</li>
-                <li>降级容错机制：算法异常时自动回退到首末句抽取策略</li>
-                <li>完整用户系统：注册登录、JWT 鉴权、历史记录管理、后台管理面板</li>
-                <li>包含 ROUGE 评估套件，用于对比原始与改进 TextRank 的性能表现</li>
+                <li>改进 TextRank：针对中文新闻倒金字塔结构，为标题句、首段、末段分别赋予 1.5×、1.3×、1.1× 位置权重</li>
+                <li>四维可视化：句子权重柱状图、相似度热力图、句子网络图、关键词词云，便于解释摘要是如何选出的</li>
+                <li>算法与业务解耦：Python 模块可经 FastAPI 提供服务，也可由 Java ProcessBuilder 调用；算法异常时回退到首尾句抽取</li>
+                <li>实现了登录注册、JWT 签发和 BCrypt 密码存储，以及历史记录与管理后台（用户、停用词、公告）</li>
+                <li>附带 ROUGE-1/2/L 评估脚本，用于对比原始与改进 TextRank</li>
             </ul>
             <div class="project-tech">
                 <span>Vue 3</span>
@@ -600,9 +659,11 @@
                 <span>MyBatis-Plus</span>
                 <span>MySQL 8.0</span>
                 <span>Python</span>
+                <span>FastAPI</span>
                 <span>jieba</span>
                 <span>scikit-learn</span>
-                <span>JWT</span>
+                <span>JWT 签发</span>
+                <span>BCrypt</span>
             </div>
         </div>
 
@@ -612,29 +673,101 @@
                 <a href="https://github.com/jaykayelo/pixwave" target="_blank">GitHub ↗</a>
             </h4>
             <p class="project-desc">
-                基于 Claude API 的智能音乐电台系统，根据实时上下文自动生成个性化音乐节目与 AI 语音播报。
+                根据天气、日程和用户偏好自动策划节目单与 DJ 口播的个性化音乐电台。默认启动 React 18 PWA，另有一套 Vue 3 + Tailwind 前端。
             </p>
+            <div class="project-gallery">
+                <figure>
+                    <img src="assets/projects/pixwave-now-playing.webp" alt="PixWave React 端正在播放与 DJ 口播">
+                    <figcaption>React PWA：正在播放与 DJ 口播</figcaption>
+                </figure>
+                <figure>
+                    <img src="assets/projects/pixwave-playlist.webp" alt="PixWave 本期歌单">
+                    <figcaption>本期歌单与口播穿插</figcaption>
+                </figure>
+                <figure>
+                    <img src="assets/projects/pixwave-vue.webp" alt="PixWave Vue 3 像素风前端">
+                    <figcaption>Vue 3 像素风前端</figcaption>
+                </figure>
+            </div>
             <ul class="project-highlights">
-                <li>上下文感知：集成天气（OpenWeather）、日历（飞书）、用户偏好，智能选曲与生成 DJ 脚本</li>
-                <li>AI 语音合成：通过 Fish Audio TTS 为每期节目生成自然的 AI 电台主持人语音</li>
-                <li>优雅降级：未配置的外部 API 自动回退 Mock 模式，仅需 ANTHROPIC_API_KEY 即可运行</li>
-                <li>实时推送：WebSocket 实时同步节目生成流水线进度与结果</li>
-                <li>PWA 前端：支持离线访问，提供正在播放、DJ 脚本气泡、播放列表控制等交互</li>
-                <li>支持定时自动生成或手动触发，profile.md + preferences.json 灵活定制</li>
+                <li>后端为 Node.js / Express：组装天气（OpenWeather）、飞书日程和本地偏好，再调用 Claude 或 DeepSeek 生成节目单与 DJ 口播</li>
+                <li>聚合网易云、QQ 音乐、酷狗等搜歌，并可用 Fish Audio 做语音播报；用 WebSocket 推送生成流水线进度</li>
+                <li>未配置的第三方接口会自动降级为 mock 模式，便于在缺少部分 API Key 时完整演示</li>
+                <li>双前端：React 18 PWA 为默认启动端，另实现 Vue 3 + Tailwind 版本；支持定时或手动生成节目</li>
             </ul>
             <div class="project-tech">
                 <span>Node.js</span>
-                <span>Vue / Vite</span>
-                <span>Claude API</span>
-                <span>WebSocket</span>
+                <span>Express</span>
+                <span>React 18</span>
+                <span>Vue 3</span>
+                <span>Vite</span>
                 <span>PWA</span>
+                <span>WebSocket</span>
+                <span>Claude API</span>
+                <span>DeepSeek</span>
                 <span>Fish Audio TTS</span>
                 <span>OpenWeather</span>
                 <span>飞书 API</span>
-                <span>网易云音乐</span>
             </div>
         </div>
-    </section>
+
+        <div class="project-card">
+            <h4>
+                🔌 Codex-MiMo 代理
+                <a href="https://github.com/jaykayelo/codex-mimo-proxy" target="_blank">GitHub ↗</a>
+                <a href="https://github.com/jaykayelo/mimo-codex-guide" target="_blank">配置指南 ↗</a>
+            </h4>
+            <p class="project-desc">
+                把 Codex CLI 使用的 Responses API 适配到小米 MiMo 的 Chat Completions 接口，并整理了一份将 MiMo 接入 Codex 的配置说明。
+            </p>
+            <div class="project-gallery">
+                <figure>
+                    <img class="contain" src="assets/projects/codex-mimo-proxy.webp" alt="codex-mimo-proxy 启动与用法说明">
+                    <figcaption>代理用途与本地启动说明</figcaption>
+                </figure>
+            </div>
+            <ul class="project-highlights">
+                <li>用 Python / Flask 编写协议转换代理，把 Responses API 请求翻译为 MiMo 的 Chat Completions，并支持流式 SSE 与 tool call 转换</li>
+                <li>按密钥前缀区分订阅计划（sk-）与 token 计划（tp-），自动选择对应的 MiMo 接口地址</li>
+                <li>另写了 <a href="https://github.com/jaykayelo/mimo-codex-guide" target="_blank">mimo-codex-guide</a>，记录通过 Moon Bridge 将 MiMo 接入 Codex CLI 的配置步骤，与上述自研代理是两条可并行的接入路径</li>
+            </ul>
+            <div class="project-tech">
+                <span>Python</span>
+                <span>Flask</span>
+                <span>Responses API</span>
+                <span>SSE</span>
+                <span>Codex CLI</span>
+                <span>MiMo</span>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <h4>
+                📚 408 数据结构学习工作台
+                <a href="https://github.com/jaykayelo/408-data-structure-study-desk" target="_blank">GitHub ↗</a>
+            </h4>
+            <p class="project-desc">
+                面向考研 408 数据结构专项的本地练习工具，只保存题号、考点与自评记录，不复制题干或答案。
+            </p>
+            <div class="project-gallery">
+                <figure>
+                    <img src="assets/projects/ds408-today.webp" alt="408 工作台今日练习与到期复做">
+                    <figcaption>今日练习与到期复做</figcaption>
+                </figure>
+                <figure>
+                    <img src="assets/projects/ds408-topics.webp" alt="408 工作台核心考点地图">
+                    <figcaption>核心考点地图与掌握状态</figcaption>
+                </figure>
+            </div>
+            <ul class="project-highlights">
+                <li>按考点组织练习，并根据作答情况安排 1、2、3、7 或 14 天后的复做；可生成 60 分钟混合测试，记录过程但不自动阅卷</li>
+                <li>纯 Python 标准库本地服务，记录保存在本机，适合自己复习时使用</li>
+            </ul>
+            <div class="project-tech">
+                <span>Python</span>
+                <span>原生 HTML/CSS/JS</span>
+            </div>
+        </div>
 
     <!-- Core Courses -->
     <section class="section">
