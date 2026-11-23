@@ -5,865 +5,818 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>金凯奇 - 个人简历</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --ink: #0f172a;
+            --muted: #64748b;
+            --line: #e2e8f0;
+            --bg: #f7f8fa;
+            --card: #ffffff;
+            --accent: #2563eb;
+            --accent-soft: #eff6ff;
+            --radius: 12px;
+            --shadow: 0 1px 2px rgba(15, 23, 42, 0.06), 0 8px 24px rgba(15, 23, 42, 0.04);
         }
 
-        :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --accent: #3b82f6;
-            --bg: #f8fafc;
-            --card-bg: #ffffff;
-            --text: #1e293b;
-            --text-secondary: #64748b;
-            --border: #e2e8f0;
-            --success: #10b981;
-            --shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
             background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            min-height: 100vh;
+            color: var(--ink);
+            line-height: 1.55;
+            font-size: 15px;
         }
 
-        /* Header */
-        .header {
-            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
 
-        .header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
-            animation: pulse 8s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        .header-content {
-            position: relative;
-            z-index: 1;
-            max-width: 900px;
+        .wrap {
+            max-width: 820px;
             margin: 0 auto;
+            padding: 16px 20px 44px;
+        }
+
+        /* Tight header */
+        .hero {
             display: flex;
             align-items: center;
-            gap: 40px;
-            justify-content: center;
+            gap: 20px;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 14px 18px;
+            box-shadow: var(--shadow);
         }
 
         .photo {
-            width: 160px;
-            height: 200px;
+            width: 84px;
+            height: 104px;
             object-fit: cover;
-            border-radius: 12px;
-            border: 4px solid rgba(255,255,255,0.9);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            object-position: top;
+            border-radius: 10px;
             flex-shrink: 0;
+            background: #e2e8f0;
         }
 
-        .header-info {
-            text-align: left;
+        .hero h1 {
+            font-size: 1.7rem;
+            letter-spacing: 1px;
+            line-height: 1.2;
         }
 
-        .header-info h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            letter-spacing: 2px;
+        .hero .role {
+            color: var(--muted);
+            font-size: 0.92rem;
+            margin: 4px 0 10px;
         }
 
-        .header-info .subtitle {
-            font-size: 1.15rem;
-            opacity: 0.9;
-            margin-bottom: 16px;
-            font-weight: 300;
-        }
-
-        .tagline {
-            display: inline-block;
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(10px);
-            padding: 6px 18px;
-            border-radius: 20px;
-            font-size: 0.95rem;
-            border: 1px solid rgba(255,255,255,0.25);
-        }
-
-        .contact-bar {
+        .contacts {
             display: flex;
-            gap: 20px;
-            margin-top: 16px;
             flex-wrap: wrap;
+            gap: 4px 14px;
+            font-size: 0.82rem;
+            color: var(--muted);
         }
 
-        .contact-item {
+        .contacts a { color: inherit; }
+        .contacts a:hover { color: var(--accent); }
+
+        /* Sections */
+        section { margin-top: 14px; }
+
+        .section-head {
             display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.9rem;
-            opacity: 0.9;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 10px;
         }
 
-        .contact-item a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .contact-item a:hover {
-            text-decoration: underline;
-        }
-
-        /* Main Content */
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 20px 80px;
-        }
-
-        .section {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 32px;
-            margin-bottom: 28px;
-            box-shadow: var(--shadow);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .section:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-
-        .section-title {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.3rem;
+        h2 {
+            font-size: 0.78rem;
             font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 22px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid var(--border);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
         }
 
-        .section-title .icon {
-            width: 28px;
-            height: 28px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1rem;
+        .about {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 12px 16px;
+            color: #334155;
+            font-size: 0.95rem;
         }
 
-        /* Education */
-        .edu-card {
+        .edu {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
+            align-items: baseline;
             gap: 12px;
+            flex-wrap: wrap;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 10px 16px;
         }
 
-        .edu-main h3 {
-            font-size: 1.15rem;
-            font-weight: 600;
+        .edu h3 { font-size: 0.98rem; }
+        .edu p { color: var(--muted); font-size: 0.86rem; margin-top: 2px; }
+        .edu-meta { font-size: 0.86rem; color: var(--ink); font-weight: 600; white-space: nowrap; }
+
+        .skills {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 10px 16px;
         }
 
-        .edu-main p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin-top: 4px;
-        }
-
-        .edu-badge {
-            background: linear-gradient(135deg, #fef3c7, #fde68a);
-            color: #92400e;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            white-space: nowrap;
-        }
-
-        /* Skills */
-        .skills-grid {
+        .skill-row {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 16px;
+            grid-template-columns: 64px 1fr;
+            gap: 10px;
+            align-items: start;
         }
 
-        .skill-category {
-            background: #f8fafc;
-            border-radius: 12px;
-            padding: 18px;
-            border: 1px solid var(--border);
+        .skill-row dt {
+            font-size: 0.75rem;
+            color: var(--muted);
+            padding-top: 4px;
         }
 
-        .skill-category h4 {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            margin-bottom: 12px;
+        .skill-row dd { display: flex; flex-wrap: wrap; gap: 6px; }
+
+        .tag {
+            display: inline-block;
+            background: var(--accent-soft);
+            color: #1e40af;
+            border: 1px solid #dbeafe;
+            padding: 2px 8px;
+            border-radius: 999px;
+            font-size: 0.75rem;
             font-weight: 500;
         }
 
-        .skill-tags {
+        .tag.plain {
+            background: #f8fafc;
+            color: #334155;
+            border-color: var(--line);
+        }
+
+        /* Project carousel */
+        .carousel {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .carousel-toolbar {
             display: flex;
-            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .pager {
+            display: flex;
+            align-items: center;
             gap: 8px;
         }
 
-        .skill-tag {
-            background: white;
-            border: 1.5px solid var(--border);
-            padding: 5px 14px;
+        .nav-btn {
+            width: 34px;
+            height: 34px;
+            border: 1px solid var(--line);
+            background: #fff;
             border-radius: 8px;
-            font-size: 0.88rem;
-            font-weight: 500;
-            transition: all 0.2s;
+            cursor: pointer;
+            color: var(--ink);
+            font-size: 1.05rem;
+            line-height: 1;
         }
 
-        .skill-tag:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15);
-        }
+        .nav-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .nav-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-        .skill-tag.excellent {
-            background: linear-gradient(135deg, #ecfdf5, #d1fae5);
-            border-color: #10b981;
-            color: #047857;
-        }
-
-        .skill-tag.good {
-            background: linear-gradient(135deg, #eff6ff, #dbeafe);
-            border-color: #3b82f6;
-            color: #1d4ed8;
-        }
-
-        /* Grades */
-        .grades-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.92rem;
-        }
-
-        .grades-table th {
-            text-align: left;
-            background: #f1f5f9;
-            padding: 10px 14px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .grades-table th:first-child {
-            border-radius: 8px 0 0 8px;
-        }
-
-        .grades-table th:last-child {
-            border-radius: 0 8px 8px 0;
-        }
-
-        .grades-table td {
-            padding: 10px 14px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .grades-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .grades-table tr:hover td {
-            background: #f8fafc;
-        }
-
-        .score {
-            font-weight: 700;
+        .page-label {
+            font-size: 0.82rem;
+            color: var(--muted);
+            min-width: 42px;
+            text-align: center;
             font-variant-numeric: tabular-nums;
         }
 
-        .score.high {
-            color: #059669;
+        .dots { display: flex; gap: 6px; }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            border: 0;
+            background: #cbd5e1;
+            cursor: pointer;
+            padding: 0;
         }
 
-        .score.good {
-            color: var(--primary);
-        }
+        .dot[aria-current="true"] { background: var(--accent); transform: scale(1.15); }
 
-        /* Projects */
-        .project-card {
-            background: #f8fafc;
-            border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 20px;
-            border-left: 4px solid var(--primary);
-            transition: transform 0.2s;
-        }
+        .viewport { overflow: hidden; }
 
-        .project-card:last-child {
-            margin-bottom: 0;
-        }
-
-        .project-card:hover {
-            transform: translateX(4px);
-        }
-
-        .project-card h4 {
-            font-size: 1.1rem;
-            margin-bottom: 6px;
+        .track {
             display: flex;
-            align-items: center;
+            transition: transform 0.35s ease;
+            will-change: transform;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .track { transition: none; }
+            html { scroll-behavior: auto; }
+        }
+
+        .slide {
+            flex: 0 0 100%;
+            min-width: 100%;
+            padding: 16px 18px 18px;
+        }
+
+        .project-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
             gap: 10px;
-        }
-
-        .project-card h4 a {
-            color: var(--primary);
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 400;
-            opacity: 0.7;
-            transition: opacity 0.2s;
-        }
-
-        .project-card h4 a:hover {
-            opacity: 1;
-            text-decoration: underline;
-        }
-
-        .project-card .project-desc {
-            color: var(--text-secondary);
-            font-size: 0.92rem;
-            margin-bottom: 12px;
-            line-height: 1.7;
-        }
-
-        .project-card .project-highlights {
-            list-style: none;
-            margin-bottom: 12px;
-        }
-
-        .project-card .project-highlights li {
-            font-size: 0.88rem;
-            color: var(--text-secondary);
-            padding: 3px 0;
-            padding-left: 16px;
-            position: relative;
-        }
-
-        .project-card .project-highlights li::before {
-            content: '▸';
-            position: absolute;
-            left: 0;
-            color: var(--primary);
-            font-size: 0.7rem;
-            top: 6px;
-        }
-
-        .project-tech {
-            display: flex;
-            gap: 8px;
             flex-wrap: wrap;
+            margin-bottom: 6px;
         }
 
+        .project-head h3 { font-size: 1.08rem; }
+        .project-links { display: flex; gap: 12px; font-size: 0.82rem; flex-shrink: 0; }
 
-        .project-tech span {
-            background: white;
-            border: 1px solid var(--border);
-            padding: 3px 10px;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
+        .pitch {
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
         }
 
-        .project-gallery {
+        .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 10px;
-            margin: 4px 0 16px;
+            grid-template-columns: 1fr 92px;
+            gap: 8px;
+            margin-bottom: 12px;
         }
 
-        .project-gallery figure {
-            margin: 0;
-        }
-
-        .project-gallery img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            object-position: top center;
+        .gallery-main {
+            position: relative;
+            border: 1px solid var(--line);
             border-radius: 8px;
-            border: 1px solid var(--border);
+            overflow: hidden;
             background: #0f172a;
+            cursor: zoom-in;
+            aspect-ratio: 16 / 9;
+        }
+
+        .gallery-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
             display: block;
         }
 
-        .project-gallery img.contain {
-            object-fit: contain;
-            background: #0b1220;
+        .gallery-main img.contain { object-fit: contain; }
+
+        .thumbs {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            overflow: auto;
+            max-height: 100%;
         }
 
-        .project-gallery figcaption {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            margin-top: 6px;
-            text-align: center;
+        .thumbs button {
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            overflow: hidden;
+            padding: 0;
+            background: #0f172a;
+            cursor: pointer;
+            flex: 1;
+            min-height: 0;
         }
 
-        /* About */
-        .about-text {
-            font-size: 1rem;
-            line-height: 1.9;
-            color: var(--text-secondary);
+        .thumbs button[aria-current="true"] { border-color: var(--accent); box-shadow: 0 0 0 2px #bfdbfe; }
+
+        .thumbs img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+            aspect-ratio: 16 / 10;
         }
 
-        .highlight {
-            color: var(--primary);
-            font-weight: 600;
-        }
+        .thumbs img.contain { object-fit: contain; }
 
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 30px;
-            color: var(--text-secondary);
+        .bullets {
+            margin: 0 0 10px 18px;
+            color: #334155;
             font-size: 0.88rem;
         }
 
-        .footer a {
-            color: var(--primary);
-            text-decoration: none;
+        .bullets li { margin: 3px 0; }
+
+        .tech { display: flex; flex-wrap: wrap; gap: 6px; }
+
+        /* Collapsible extras */
+        details.extra {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 10px 16px;
         }
 
-        /* Responsive */
+        details.extra + details.extra { margin-top: 10px; }
+
+        details.extra summary {
+            cursor: pointer;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            list-style: none;
+        }
+
+        details.extra summary::-webkit-details-marker { display: none; }
+        details.extra summary::after { content: " +"; font-weight: 400; }
+        details.extra[open] summary::after { content: " −"; }
+
+        .grades {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 0.84rem;
+        }
+
+        .grades th, .grades td {
+            text-align: left;
+            padding: 6px 8px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .grades th { color: var(--muted); font-weight: 500; }
+        .grades td:nth-child(2), .grades td:nth-child(3),
+        .grades th:nth-child(2), .grades th:nth-child(3) { text-align: right; width: 72px; }
+
+        .certs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .certs li {
+            list-style: none;
+            background: #f8fafc;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-size: 0.86rem;
+        }
+
+        footer {
+            margin-top: 22px;
+            color: var(--muted);
+            font-size: 0.75rem;
+            text-align: center;
+            line-height: 1.7;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.86);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 40;
+            padding: 24px;
+        }
+
+        .lightbox.open { display: flex; }
+
+        .lightbox img {
+            max-width: min(1200px, 100%);
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+            background: #0b1220;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: #fff;
+            border: 0;
+            border-radius: 8px;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .lightbox-caption {
+            position: absolute;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #e2e8f0;
+            font-size: 0.82rem;
+        }
+
         @media (max-width: 640px) {
-            .header-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .header-info {
-                text-align: center;
-            }
-
-            .contact-bar {
-                justify-content: center;
-            }
-
-            .header-info h1 {
-                font-size: 1.8rem;
-            }
-
-            .section {
-                padding: 22px;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .grades-table {
-                font-size: 0.82rem;
-            }
-
-            .grades-table th, .grades-table td {
-                padding: 8px 10px;
-            }
-
-            .project-gallery {
-                grid-template-columns: 1fr;
-            }
-
-            .project-gallery img {
-                height: 180px;
-            }
+            .wrap { padding: 12px 12px 36px; }
+            .hero { gap: 14px; padding: 14px; }
+            .photo { width: 68px; height: 84px; }
+            .hero h1 { font-size: 1.4rem; }
+            .gallery { grid-template-columns: 1fr; }
+            .thumbs { flex-direction: row; max-height: none; }
+            .thumbs button { flex: 1; }
+            .skill-row { grid-template-columns: 48px 1fr; }
+            .slide { padding: 14px; }
         }
 
-        /* Print styles */
         @media print {
-            body { background: white; }
-            .section { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
-            .header { background: #1e40af !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            body { background: #fff; }
+            .nav-btn, .dots, .lightbox { display: none !important; }
+            details.extra { border: 1px solid #ddd; }
+            details.extra[open], details.extra { display: block; }
+            .track { transform: none !important; display: block; }
+            .slide { page-break-inside: avoid; min-width: 0; padding: 12px 0; }
+            .carousel, .hero, .about, .edu, .skills { box-shadow: none; }
         }
     </style>
 </head>
 <body>
-
-<!-- Header -->
-<header class="header">
-    <div class="header-content">
-        <img src="3abbada77cd5c074b39af0f6d78865f3.jpg" alt="金凯奇" class="photo">
-        <div class="header-info">
-            <h1>金凯奇</h1>
-            <p class="subtitle">计算机科学与技术 | 2026届应届毕业生</p>
-            <span class="tagline">温州商学院 · 信息工程学院</span>
-            <div class="contact-bar">
-                <span class="contact-item">📧 j11207912@outlook.com</span>
-                <span class="contact-item">📱 13735333013</span>
-                <span class="contact-item">📍 浙江绍兴</span>
-                <span class="contact-item">🔗 <a href="https://github.com/jaykayelo" target="_blank">github.com/jaykayelo</a></span>
+    <div class="wrap">
+        <header class="hero">
+            <img class="photo" src="3abbada77cd5c074b39af0f6d78865f3.jpg" alt="金凯奇的照片">
+            <div>
+                <h1>金凯奇</h1>
+                <p class="role">计算机科学与技术 · 2026 届应届毕业生 · 温州商学院信息工程学院</p>
+                <div class="contacts">
+                    <a href="mailto:j11207912@outlook.com">j11207912@outlook.com</a>
+                    <span>13735333013</span>
+                    <span>浙江绍兴</span>
+                    <a href="https://github.com/jaykayelo" target="_blank" rel="noopener">github.com/jaykayelo</a>
+                </div>
             </div>
-        </div>
+        </header>
+
+        <section>
+            <div class="section-head"><h2>关于我</h2></div>
+            <p class="about">
+                温州商学院 2026 届计算机科学与技术毕业生，关注全栈开发与 AI 应用。
+                独立完成基于改进 TextRank 的新闻摘要系统，以及 Node.js 智能电台 PixWave。
+                均分 81.13，绩点 3.2，期待在软件开发岗位上创造价值。
+            </p>
+        </section>
+
+        <section>
+            <div class="section-head"><h2>教育背景</h2></div>
+            <div class="edu">
+                <div>
+                    <h3>温州商学院 · 信息工程学院</h3>
+                    <p>计算机科学与技术 本科 · 2026 届</p>
+                </div>
+                <div class="edu-meta">均分 81.13 · 绩点 3.2</div>
+            </div>
+        </section>
+
+        <section>
+            <div class="section-head"><h2>专业技能</h2></div>
+            <dl class="skills">
+                <div class="skill-row"><dt>语言</dt><dd>
+                    <span class="tag">Java</span><span class="tag">Python</span><span class="tag">JavaScript</span>
+                    <span class="tag plain">C/C++</span><span class="tag plain">SQL</span><span class="tag plain">HTML/CSS</span>
+                </dd></div>
+                <div class="skill-row"><dt>前端</dt><dd>
+                    <span class="tag">Vue 3</span><span class="tag">React 18</span><span class="tag plain">Element Plus</span>
+                    <span class="tag plain">Vite</span><span class="tag plain">ECharts</span><span class="tag plain">PWA</span>
+                </dd></div>
+                <div class="skill-row"><dt>后端</dt><dd>
+                    <span class="tag">Spring Boot</span><span class="tag">Node.js</span><span class="tag plain">MyBatis-Plus</span>
+                    <span class="tag plain">JWT 签发</span><span class="tag plain">BCrypt</span><span class="tag plain">REST</span>
+                    <span class="tag plain">WebSocket</span>
+                </dd></div>
+                <div class="skill-row"><dt>AI</dt><dd>
+                    <span class="tag">Claude API</span><span class="tag">TextRank</span><span class="tag plain">jieba</span>
+                    <span class="tag plain">scikit-learn</span><span class="tag plain">NumPy / Pandas</span>
+                </dd></div>
+                <div class="skill-row"><dt>工具</dt><dd>
+                    <span class="tag">MySQL</span><span class="tag">Git</span><span class="tag plain">Linux</span>
+                    <span class="tag plain">VS Code</span>
+                </dd></div>
+            </dl>
+        </section>
+
+        <section>
+            <div class="section-head">
+                <h2>项目经历</h2>
+            </div>
+            <div class="carousel" id="projects" aria-roledescription="carousel" aria-label="项目经历">
+                <div class="carousel-toolbar">
+                    <div class="pager">
+                        <button type="button" class="nav-btn" id="project-prev" aria-label="上一个项目">‹</button>
+                        <span class="page-label" id="project-page" aria-live="polite">1 / 4</span>
+                        <button type="button" class="nav-btn" id="project-next" aria-label="下一个项目">›</button>
+                    </div>
+                    <div class="dots" id="project-dots"></div>
+                </div>
+                <div class="viewport" id="project-viewport">
+                    <div class="track" id="project-track">
+
+                        <article class="slide" data-title="新闻自动摘要系统">
+                            <div class="project-head">
+                                <h3>新闻自动摘要系统</h3>
+                                <div class="project-links">
+                                    <a href="https://github.com/jaykayelo/news-summary-system" target="_blank" rel="noopener">GitHub ↗</a>
+                                </div>
+                            </div>
+                            <p class="pitch">毕业设计：基于改进 TextRank 的中文新闻摘要系统，全栈独立开发。</p>
+                            <div class="gallery" data-gallery>
+                                <button type="button" class="gallery-main" data-zoom>
+                                    <img src="assets/projects/news-summary-result.webp" alt="摘要结果、关键词与句子权重">
+                                </button>
+                                <div class="thumbs">
+                                    <button type="button" aria-current="true" data-src="assets/projects/news-summary-result.webp" data-fit="cover" data-caption="摘要结果、关键词与句子权重"><img src="assets/projects/news-summary-result.webp" alt=""></button>
+                                    <button type="button" data-src="assets/projects/news-summary-wordcloud.webp" data-fit="cover" data-caption="关键词词云等四维可视化"><img src="assets/projects/news-summary-wordcloud.webp" alt=""></button>
+                                    <button type="button" data-src="assets/projects/news-summary-input.webp" data-fit="cover" data-caption="粘贴新闻正文，准备生成摘要"><img src="assets/projects/news-summary-input.webp" alt=""></button>
+                                </div>
+                            </div>
+                            <ul class="bullets">
+                                <li>针对中文新闻倒金字塔结构做位置加权（标题 1.5×、首段 1.3×、末段 1.1×），并用柱状图、热力图、网络图和词云解释摘要来源。</li>
+                                <li>算法与业务解耦：Python 模块可经 FastAPI 提供服务，也可由 Java ProcessBuilder 调用；异常时回退到首尾句抽取。</li>
+                                <li>实现了登录注册、JWT 签发和 BCrypt 密码存储，以及历史记录与管理后台。</li>
+                            </ul>
+                            <div class="tech">
+                                <span class="tag plain">Vue 3</span><span class="tag plain">Spring Boot 2.7</span>
+                                <span class="tag plain">MySQL</span><span class="tag plain">Python</span>
+                                <span class="tag plain">FastAPI</span><span class="tag plain">ECharts</span>
+                                <span class="tag plain">JWT 签发</span><span class="tag plain">BCrypt</span>
+                            </div>
+                        </article>
+
+                        <article class="slide" data-title="PixWave">
+                            <div class="project-head">
+                                <h3>PixWave — AI 智能音乐电台</h3>
+                                <div class="project-links">
+                                    <a href="https://github.com/jaykayelo/pixwave" target="_blank" rel="noopener">GitHub ↗</a>
+                                </div>
+                            </div>
+                            <p class="pitch">按天气、日程和偏好自动生成节目单与 DJ 口播。默认 React 18 PWA，另有 Vue 3 前端。</p>
+                            <div class="gallery" data-gallery>
+                                <button type="button" class="gallery-main" data-zoom>
+                                    <img src="assets/projects/pixwave-now-playing.webp" alt="React PWA：正在播放与 DJ 口播">
+                                </button>
+                                <div class="thumbs">
+                                    <button type="button" aria-current="true" data-src="assets/projects/pixwave-now-playing.webp" data-fit="cover" data-caption="React PWA：正在播放与 DJ 口播"><img src="assets/projects/pixwave-now-playing.webp" alt=""></button>
+                                    <button type="button" data-src="assets/projects/pixwave-playlist.webp" data-fit="cover" data-caption="本期歌单与口播穿插"><img src="assets/projects/pixwave-playlist.webp" alt=""></button>
+                                    <button type="button" data-src="assets/projects/pixwave-vue.webp" data-fit="cover" data-caption="Vue 3 像素风前端"><img src="assets/projects/pixwave-vue.webp" alt=""></button>
+                                </div>
+                            </div>
+                            <ul class="bullets">
+                                <li>Node.js / Express 组装天气、飞书日程和本地偏好，调用 Claude 或 DeepSeek 生成节目单与口播，并用 WebSocket 推送进度。</li>
+                                <li>未配置的第三方接口会自动降级为 mock，便于在缺少部分 API Key 时完整演示。</li>
+                                <li>双前端：React 18 PWA 为默认启动端，另实现 Vue 3 + Tailwind 版本，支持定时或手动生成。</li>
+                            </ul>
+                            <div class="tech">
+                                <span class="tag plain">Node.js</span><span class="tag plain">React 18</span>
+                                <span class="tag plain">Vue 3</span><span class="tag plain">PWA</span>
+                                <span class="tag plain">WebSocket</span><span class="tag plain">Claude API</span>
+                            </div>
+                        </article>
+
+                        <article class="slide" data-title="Codex-MiMo 代理">
+                            <div class="project-head">
+                                <h3>Codex-MiMo 代理</h3>
+                                <div class="project-links">
+                                    <a href="https://github.com/jaykayelo/codex-mimo-proxy" target="_blank" rel="noopener">GitHub ↗</a>
+                                    <a href="https://github.com/jaykayelo/mimo-codex-guide" target="_blank" rel="noopener">配置指南 ↗</a>
+                                </div>
+                            </div>
+                            <p class="pitch">把 Codex CLI 的 Responses API 适配到小米 MiMo 的 Chat Completions，并整理接入说明。</p>
+                            <div class="gallery" data-gallery>
+                                <button type="button" class="gallery-main" data-zoom>
+                                    <img class="contain" src="assets/projects/codex-mimo-proxy.webp" alt="代理用途与本地启动说明">
+                                </button>
+                                <div class="thumbs">
+                                    <button type="button" aria-current="true" data-src="assets/projects/codex-mimo-proxy.webp" data-fit="contain" data-caption="代理用途与本地启动说明"><img class="contain" src="assets/projects/codex-mimo-proxy.webp" alt=""></button>
+                                </div>
+                            </div>
+                            <ul class="bullets">
+                                <li>用 Python / Flask 做协议转换，支持流式 SSE 与 tool call，并按密钥前缀区分订阅计划与 token 计划。</li>
+                                <li>另写了 mimo-codex-guide，记录通过 Moon Bridge 将 MiMo 接入 Codex CLI 的步骤；与自研代理是两条可并行的路径。</li>
+                            </ul>
+                            <div class="tech">
+                                <span class="tag plain">Python</span><span class="tag plain">Flask</span>
+                                <span class="tag plain">Responses API</span><span class="tag plain">SSE</span>
+                                <span class="tag plain">Codex CLI</span><span class="tag plain">MiMo</span>
+                            </div>
+                        </article>
+
+                        <article class="slide" data-title="408 数据结构学习工作台">
+                            <div class="project-head">
+                                <h3>408 数据结构学习工作台</h3>
+                                <div class="project-links">
+                                    <a href="https://github.com/jaykayelo/408-data-structure-study-desk" target="_blank" rel="noopener">GitHub ↗</a>
+                                </div>
+                            </div>
+                            <p class="pitch">面向考研 408 数据结构专项的本地练习工具，只保存题号、考点与自评，不复制题干或答案。</p>
+                            <div class="gallery" data-gallery>
+                                <button type="button" class="gallery-main" data-zoom>
+                                    <img src="assets/projects/ds408-today.webp" alt="今日练习与到期复做">
+                                </button>
+                                <div class="thumbs">
+                                    <button type="button" aria-current="true" data-src="assets/projects/ds408-today.webp" data-fit="cover" data-caption="今日练习与到期复做"><img src="assets/projects/ds408-today.webp" alt=""></button>
+                                    <button type="button" data-src="assets/projects/ds408-topics.webp" data-fit="cover" data-caption="核心考点地图与掌握状态"><img src="assets/projects/ds408-topics.webp" alt=""></button>
+                                </div>
+                            </div>
+                            <ul class="bullets">
+                                <li>按作答情况安排 1、2、3、7 或 14 天后复做，并可生成 60 分钟混合测试（只记录过程，不自动阅卷）。</li>
+                                <li>纯 Python 标准库本地服务，记录保存在本机。</li>
+                            </ul>
+                            <div class="tech">
+                                <span class="tag plain">Python</span><span class="tag plain">原生 HTML/CSS/JS</span>
+                            </div>
+                        </article>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <details class="extra">
+                <summary>核心课程成绩</summary>
+                <table class="grades">
+                    <thead><tr><th>课程</th><th>学分</th><th>成绩</th></tr></thead>
+                    <tbody>
+                        <tr><td>高级语言程序设计基础</td><td>3.0</td><td>93</td></tr>
+                        <tr><td>Web后端技术</td><td>4.0</td><td>88</td></tr>
+                        <tr><td>数据库应用技术</td><td>4.0</td><td>87</td></tr>
+                        <tr><td>软件工程</td><td>4.0</td><td>87</td></tr>
+                        <tr><td>Web前端课程设计</td><td>1.0</td><td>87</td></tr>
+                        <tr><td>Web前端框架应用</td><td>3.0</td><td>86</td></tr>
+                        <tr><td>大数据应用技术</td><td>3.0</td><td>86</td></tr>
+                        <tr><td>大学英语B（一）</td><td>4.0</td><td>86</td></tr>
+                        <tr><td>Python数据分析与展示</td><td>4.0</td><td>84</td></tr>
+                        <tr><td>应用系统开发综合实训</td><td>1.0</td><td>83</td></tr>
+                        <tr><td>操作系统</td><td>3.0</td><td>81</td></tr>
+                        <tr><td>数据结构与算法</td><td>4.0</td><td>81</td></tr>
+                    </tbody>
+                </table>
+            </details>
+            <details class="extra">
+                <summary>资格证书</summary>
+                <ul class="certs">
+                    <li>全国计算机等级考试 <strong>二级 C语言程序设计</strong></li>
+                    <li>大学英语四级 <strong>CET-4</strong></li>
+                </ul>
+            </details>
+        </section>
+
+        <footer>
+            本页面由金凯奇本人维护。版式参考了 Start Bootstrap Resume、Ryan Fitzgerald 的 devportfolio 与 Simplefolio 的简洁风格，样式与脚本为原创。
+        </footer>
     </div>
-</header>
 
-<main class="container">
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="查看大图" hidden>
+        <button type="button" class="lightbox-close" id="lightbox-close" aria-label="关闭">×</button>
+        <img id="lightbox-img" alt="">
+        <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
 
-    <!-- About Me -->
-    <section class="section">
-        <h2 class="section-title"><span class="icon">👋</span> 关于我</h2>
-        <p class="about-text">
-            你好！我是<span class="highlight">金凯奇</span>，温州商学院信息工程学院2026届计算机科学与技术专业毕业生。
-            我热衷于<span class="highlight">全栈开发</span>与<span class="highlight">AI应用</span>，具备从零搭建完整Web系统的能力：
-            毕业设计基于改进的<span class="highlight">TextRank算法</span>实现了新闻自动摘要系统（Vue 3 + Spring Boot + Python），
-            独立开发了智能音乐电台 <span class="highlight">PixWave</span>（Node.js，默认 React 18 PWA，另有 Vue 3 前端）。
-            在校期间均分<span class="highlight">81.13</span>，绩点<span class="highlight">3.2</span>，核心课程成绩优异。
-            我热爱用技术解决实际问题，期待在软件开发岗位上创造价值。
-        </p>
-    </section>
+    <script>
+    (function () {
+        const track = document.getElementById("project-track");
+        const slides = Array.from(track.children);
+        const prevBtn = document.getElementById("project-prev");
+        const nextBtn = document.getElementById("project-next");
+        const pageLabel = document.getElementById("project-page");
+        const dotsWrap = document.getElementById("project-dots");
+        const viewport = document.getElementById("project-viewport");
+        const total = slides.length;
+        let index = 0;
 
-    <!-- Education -->
-    <section class="section">
-        <h2 class="section-title"><span class="icon">🎓</span> 教育背景</h2>
-        <div class="edu-card">
-            <div class="edu-main">
-                <h3>温州商学院 · 信息工程学院</h3>
-                <p>计算机科学与技术 本科 | 2026届</p>
-            </div>
-            <div class="edu-badge">📊 均分 81.13 | 绩点 3.2</div>
-        </div>
-    </section>
+        slides.forEach((slide, i) => {
+            const dot = document.createElement("button");
+            dot.type = "button";
+            dot.className = "dot";
+            dot.setAttribute("aria-label", "第 " + (i + 1) + " 个项目：" + (slide.dataset.title || ""));
+            dot.addEventListener("click", () => go(i));
+            dotsWrap.appendChild(dot);
+        });
 
-    <!-- Skills -->
-    <section class="section">
-        <h2 class="section-title"><span class="icon">💻</span> 专业技能</h2>
-        <div class="skills-grid">
-            <div class="skill-category">
-                <h4>🔵 编程语言</h4>
-                <div class="skill-tags">
-                    <span class="skill-tag excellent">Java</span>
-                    <span class="skill-tag excellent">Python</span>
-                    <span class="skill-tag good">JavaScript</span>
-                    <span class="skill-tag good">C/C++</span>
-                    <span class="skill-tag">SQL</span>
-                    <span class="skill-tag">HTML/CSS</span>
-                </div>
-            </div>
-            <div class="skill-category">
-                <h4>🌐 前端开发</h4>
-                <div class="skill-tags">
-                    <span class="skill-tag excellent">Vue 3</span>
-                    <span class="skill-tag good">React 18</span>
-                    <span class="skill-tag good">Element Plus</span>
-                    <span class="skill-tag good">Vite</span>
-                    <span class="skill-tag good">ECharts</span>
-                    <span class="skill-tag">响应式布局</span>
-                    <span class="skill-tag">PWA</span>
-                </div>
-            </div>
-            <div class="skill-category">
-                <h4>⚙️ 后端开发</h4>
-                <div class="skill-tags">
-                    <span class="skill-tag excellent">Spring Boot</span>
-                    <span class="skill-tag good">Node.js</span>
-                    <span class="skill-tag good">MyBatis-Plus</span>
-                    <span class="skill-tag good">JWT 签发</span>
-                    <span class="skill-tag good">BCrypt</span>
-                    <span class="skill-tag good">RESTful API</span>
-                    <span class="skill-tag">WebSocket</span>
-                </div>
-            </div>
-            <div class="skill-category">
-                <h4>🤖 AI / NLP</h4>
-                <div class="skill-tags">
-                    <span class="skill-tag excellent">Claude API</span>
-                    <span class="skill-tag good">TextRank</span>
-                    <span class="skill-tag good">jieba 分词</span>
-                    <span class="skill-tag good">scikit-learn</span>
-                    <span class="skill-tag">NumPy / Pandas</span>
-                </div>
-            </div>
-            <div class="skill-category">
-                <h4>🗄️ 数据库 & 工具</h4>
-                <div class="skill-tags">
-                    <span class="skill-tag excellent">MySQL</span>
-                    <span class="skill-tag good">Git</span>
-                    <span class="skill-tag good">VS Code</span>
-                    <span class="skill-tag">Linux</span>
-                    <span class="skill-tag">软件工程</span>
-                </div>
-            </div>
-        </div>
-    </section>
+        function go(i) {
+            index = (i + total) % total;
+            track.style.transform = "translateX(-" + index * 100 + "%)";
+            pageLabel.textContent = (index + 1) + " / " + total;
+            Array.from(dotsWrap.children).forEach((dot, n) => {
+                if (n === index) dot.setAttribute("aria-current", "true");
+                else dot.removeAttribute("aria-current");
+            });
+            prevBtn.disabled = false;
+            nextBtn.disabled = false;
+        }
 
-    <!-- Projects -->
-    <section class="section">
-        <h2 class="section-title"><span class="icon">🚀</span> 项目经历</h2>
+        prevBtn.addEventListener("click", () => go(index - 1));
+        nextBtn.addEventListener("click", () => go(index + 1));
 
-        <div class="project-card">
-            <h4>
-                📰 新闻自动摘要系统
-                <a href="https://github.com/jaykayelo/news-summary-system" target="_blank">GitHub ↗</a>
-            </h4>
-            <p class="project-desc">
-                毕业设计项目 —— 基于改进 TextRank 算法的中文新闻摘要系统，全栈独立开发。
-            </p>
-            <div class="project-gallery">
-                <figure>
-                    <img src="assets/projects/news-summary-input.webp" alt="新闻摘要系统：在首页粘贴中文新闻原文">
-                    <figcaption>粘贴新闻正文，准备生成摘要</figcaption>
-                </figure>
-                <figure>
-                    <img src="assets/projects/news-summary-result.webp" alt="新闻摘要系统：摘要结果与句子权重图">
-                    <figcaption>摘要结果、关键词与句子权重</figcaption>
-                </figure>
-                <figure>
-                    <img src="assets/projects/news-summary-wordcloud.webp" alt="新闻摘要系统：关键词词云">
-                    <figcaption>关键词词云等四维可视化</figcaption>
-                </figure>
-            </div>
-            <ul class="project-highlights">
-                <li>改进 TextRank：针对中文新闻倒金字塔结构，为标题句、首段、末段分别赋予 1.5×、1.3×、1.1× 位置权重</li>
-                <li>四维可视化：句子权重柱状图、相似度热力图、句子网络图、关键词词云，便于解释摘要是如何选出的</li>
-                <li>算法与业务解耦：Python 模块可经 FastAPI 提供服务，也可由 Java ProcessBuilder 调用；算法异常时回退到首尾句抽取</li>
-                <li>实现了登录注册、JWT 签发和 BCrypt 密码存储，以及历史记录与管理后台（用户、停用词、公告）</li>
-                <li>附带 ROUGE-1/2/L 评估脚本，用于对比原始与改进 TextRank</li>
-            </ul>
-            <div class="project-tech">
-                <span>Vue 3</span>
-                <span>Element Plus</span>
-                <span>ECharts</span>
-                <span>Spring Boot 2.7</span>
-                <span>MyBatis-Plus</span>
-                <span>MySQL 8.0</span>
-                <span>Python</span>
-                <span>FastAPI</span>
-                <span>jieba</span>
-                <span>scikit-learn</span>
-                <span>JWT 签发</span>
-                <span>BCrypt</span>
-            </div>
-        </div>
+        document.addEventListener("keydown", (e) => {
+            const lightbox = document.getElementById("lightbox");
+            if (lightbox.classList.contains("open")) {
+                if (e.key === "Escape") closeLightbox();
+                return;
+            }
+            if (e.key === "ArrowRight") go(index + 1);
+            if (e.key === "ArrowLeft") go(index - 1);
+        });
 
-        <div class="project-card">
-            <h4>
-                🎵 PixWave — AI 智能音乐电台
-                <a href="https://github.com/jaykayelo/pixwave" target="_blank">GitHub ↗</a>
-            </h4>
-            <p class="project-desc">
-                根据天气、日程和用户偏好自动策划节目单与 DJ 口播的个性化音乐电台。默认启动 React 18 PWA，另有一套 Vue 3 + Tailwind 前端。
-            </p>
-            <div class="project-gallery">
-                <figure>
-                    <img src="assets/projects/pixwave-now-playing.webp" alt="PixWave React 端正在播放与 DJ 口播">
-                    <figcaption>React PWA：正在播放与 DJ 口播</figcaption>
-                </figure>
-                <figure>
-                    <img src="assets/projects/pixwave-playlist.webp" alt="PixWave 本期歌单">
-                    <figcaption>本期歌单与口播穿插</figcaption>
-                </figure>
-                <figure>
-                    <img src="assets/projects/pixwave-vue.webp" alt="PixWave Vue 3 像素风前端">
-                    <figcaption>Vue 3 像素风前端</figcaption>
-                </figure>
-            </div>
-            <ul class="project-highlights">
-                <li>后端为 Node.js / Express：组装天气（OpenWeather）、飞书日程和本地偏好，再调用 Claude 或 DeepSeek 生成节目单与 DJ 口播</li>
-                <li>聚合网易云、QQ 音乐、酷狗等搜歌，并可用 Fish Audio 做语音播报；用 WebSocket 推送生成流水线进度</li>
-                <li>未配置的第三方接口会自动降级为 mock 模式，便于在缺少部分 API Key 时完整演示</li>
-                <li>双前端：React 18 PWA 为默认启动端，另实现 Vue 3 + Tailwind 版本；支持定时或手动生成节目</li>
-            </ul>
-            <div class="project-tech">
-                <span>Node.js</span>
-                <span>Express</span>
-                <span>React 18</span>
-                <span>Vue 3</span>
-                <span>Vite</span>
-                <span>PWA</span>
-                <span>WebSocket</span>
-                <span>Claude API</span>
-                <span>DeepSeek</span>
-                <span>Fish Audio TTS</span>
-                <span>OpenWeather</span>
-                <span>飞书 API</span>
-            </div>
-        </div>
+        let startX = 0;
+        let startY = 0;
+        viewport.addEventListener("touchstart", (e) => {
+            const t = e.changedTouches[0];
+            startX = t.clientX;
+            startY = t.clientY;
+        }, { passive: true });
+        viewport.addEventListener("touchend", (e) => {
+            const t = e.changedTouches[0];
+            const dx = t.clientX - startX;
+            const dy = t.clientY - startY;
+            if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
+            if (dx < 0) go(index + 1);
+            else go(index - 1);
+        }, { passive: true });
 
-        <div class="project-card">
-            <h4>
-                🔌 Codex-MiMo 代理
-                <a href="https://github.com/jaykayelo/codex-mimo-proxy" target="_blank">GitHub ↗</a>
-                <a href="https://github.com/jaykayelo/mimo-codex-guide" target="_blank">配置指南 ↗</a>
-            </h4>
-            <p class="project-desc">
-                把 Codex CLI 使用的 Responses API 适配到小米 MiMo 的 Chat Completions 接口，并整理了一份将 MiMo 接入 Codex 的配置说明。
-            </p>
-            <div class="project-gallery">
-                <figure>
-                    <img class="contain" src="assets/projects/codex-mimo-proxy.webp" alt="codex-mimo-proxy 启动与用法说明">
-                    <figcaption>代理用途与本地启动说明</figcaption>
-                </figure>
-            </div>
-            <ul class="project-highlights">
-                <li>用 Python / Flask 编写协议转换代理，把 Responses API 请求翻译为 MiMo 的 Chat Completions，并支持流式 SSE 与 tool call 转换</li>
-                <li>按密钥前缀区分订阅计划（sk-）与 token 计划（tp-），自动选择对应的 MiMo 接口地址</li>
-                <li>另写了 <a href="https://github.com/jaykayelo/mimo-codex-guide" target="_blank">mimo-codex-guide</a>，记录通过 Moon Bridge 将 MiMo 接入 Codex CLI 的配置步骤，与上述自研代理是两条可并行的接入路径</li>
-            </ul>
-            <div class="project-tech">
-                <span>Python</span>
-                <span>Flask</span>
-                <span>Responses API</span>
-                <span>SSE</span>
-                <span>Codex CLI</span>
-                <span>MiMo</span>
-            </div>
-        </div>
+        // Inner galleries
+        document.querySelectorAll("[data-gallery]").forEach((gallery) => {
+            const mainBtn = gallery.querySelector("[data-zoom]");
+            const mainImg = mainBtn.querySelector("img");
+            const thumbs = gallery.querySelectorAll(".thumbs button");
+            thumbs.forEach((thumb) => {
+                thumb.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    thumbs.forEach((b) => b.removeAttribute("aria-current"));
+                    thumb.setAttribute("aria-current", "true");
+                    mainImg.src = thumb.dataset.src;
+                    mainImg.alt = thumb.dataset.caption || "";
+                    mainImg.classList.toggle("contain", thumb.dataset.fit === "contain");
+                    mainBtn.dataset.caption = thumb.dataset.caption || "";
+                });
+            });
+            mainBtn.addEventListener("click", () => {
+                openLightbox(mainImg.src, mainImg.alt || mainBtn.dataset.caption || "");
+            });
+            if (thumbs[0]) mainBtn.dataset.caption = thumbs[0].dataset.caption || "";
+        });
 
-        <div class="project-card">
-            <h4>
-                📚 408 数据结构学习工作台
-                <a href="https://github.com/jaykayelo/408-data-structure-study-desk" target="_blank">GitHub ↗</a>
-            </h4>
-            <p class="project-desc">
-                面向考研 408 数据结构专项的本地练习工具，只保存题号、考点与自评记录，不复制题干或答案。
-            </p>
-            <div class="project-gallery">
-                <figure>
-                    <img src="assets/projects/ds408-today.webp" alt="408 工作台今日练习与到期复做">
-                    <figcaption>今日练习与到期复做</figcaption>
-                </figure>
-                <figure>
-                    <img src="assets/projects/ds408-topics.webp" alt="408 工作台核心考点地图">
-                    <figcaption>核心考点地图与掌握状态</figcaption>
-                </figure>
-            </div>
-            <ul class="project-highlights">
-                <li>按考点组织练习，并根据作答情况安排 1、2、3、7 或 14 天后的复做；可生成 60 分钟混合测试，记录过程但不自动阅卷</li>
-                <li>纯 Python 标准库本地服务，记录保存在本机，适合自己复习时使用</li>
-            </ul>
-            <div class="project-tech">
-                <span>Python</span>
-                <span>原生 HTML/CSS/JS</span>
-            </div>
-        </div>
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+        const lightboxCaption = document.getElementById("lightbox-caption");
 
-    <!-- Core Courses -->
-    <section class="section">
-        <h2 class="section-title"><span class="icon">📚</span> 核心课程成绩</h2>
-        <table class="grades-table">
-            <thead>
-                <tr>
-                    <th>课程名称</th>
-                    <th>学分</th>
-                    <th>成绩</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>高级语言程序设计基础</strong></td>
-                    <td>3.0</td>
-                    <td class="score high">93</td>
-                </tr>
-                <tr>
-                    <td><strong>Web后端技术</strong></td>
-                    <td>4.0</td>
-                    <td class="score high">88</td>
-                </tr>
-                <tr>
-                    <td><strong>数据库应用技术</strong></td>
-                    <td>4.0</td>
-                    <td class="score high">87</td>
-                </tr>
-                <tr>
-                    <td><strong>软件工程</strong></td>
-                    <td>4.0</td>
-                    <td class="score high">87</td>
-                </tr>
-                <tr>
-                    <td><strong>Web前端课程设计</strong></td>
-                    <td>1.0</td>
-                    <td class="score high">87</td>
-                </tr>
-                <tr>
-                    <td><strong>Web前端框架应用</strong></td>
-                    <td>3.0</td>
-                    <td class="score good">86</td>
-                </tr>
-                <tr>
-                    <td><strong>大数据应用技术</strong></td>
-                    <td>3.0</td>
-                    <td class="score good">86</td>
-                </tr>
-                <tr>
-                    <td><strong>大学英语B（一）</strong></td>
-                    <td>4.0</td>
-                    <td class="score good">86</td>
-                </tr>
-                <tr>
-                    <td><strong>Python数据分析与展示</strong></td>
-                    <td>4.0</td>
-                    <td class="score good">84</td>
-                </tr>
-                <tr>
-                    <td><strong>应用系统开发综合实训</strong></td>
-                    <td>1.0</td>
-                    <td class="score good">83</td>
-                </tr>
-                <tr>
-                    <td><strong>操作系统</strong></td>
-                    <td>3.0</td>
-                    <td class="score good">81</td>
-                </tr>
-                <tr>
-                    <td><strong>数据结构与算法</strong></td>
-                    <td>4.0</td>
-                    <td class="score good">81</td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
+        function openLightbox(src, caption) {
+            lightboxImg.src = src;
+            lightboxImg.alt = caption;
+            lightboxCaption.textContent = caption;
+            lightbox.hidden = false;
+            lightbox.classList.add("open");
+        }
+        function closeLightbox() {
+            lightbox.classList.remove("open");
+            lightbox.hidden = true;
+            lightboxImg.src = "";
+        }
+        document.getElementById("lightbox-close").addEventListener("click", closeLightbox);
+        lightbox.addEventListener("click", (e) => { if (e.target === lightbox) closeLightbox(); });
 
-    <!-- Certificates -->
-    <section class="section">
-        <h2 class="section-title"><span class="icon">🏆</span> 资格证书</h2>
-        <div style="display: flex; flex-wrap: wrap; gap: 12px;">
-            <div style="background: #f8fafc; padding: 14px 22px; border-radius: 10px; border: 1px solid var(--border);">
-                全国计算机等级考试 <strong>二级 C语言程序设计</strong>
-            </div>
-            <div style="background: #f8fafc; padding: 14px 22px; border-radius: 10px; border: 1px solid var(--border);">
-                大学英语四级 <strong>CET-4</strong>
-            </div>
-        </div>
-    </section>
+        window.addEventListener("beforeprint", () => {
+            document.querySelectorAll("details.extra").forEach((d) => { d.open = true; });
+        });
 
-</main>
-
-<footer class="footer">
-    <p>本页面由金凯奇本人维护 | 感谢您的阅览</p>
-    <p style="margin-top: 8px;">如需联系，欢迎通过上方方式与我取得联系 📬</p>
-</footer>
-
+        go(0);
+    })();
+    </script>
 </body>
 </html>
