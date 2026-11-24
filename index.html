@@ -58,6 +58,7 @@
             border-radius: 10px;
             flex-shrink: 0;
             background: #e2e8f0;
+            image-rendering: auto;
         }
 
         .hero h1 {
@@ -152,6 +153,14 @@
 
         .skill-row dd { display: flex; flex-wrap: wrap; gap: 6px; }
 
+        .skill-row dd.note {
+            display: block;
+            font-size: 0.86rem;
+            color: #334155;
+            line-height: 1.5;
+            padding-top: 3px;
+        }
+
         .tag {
             display: inline-block;
             background: var(--accent-soft);
@@ -235,7 +244,6 @@
         .track {
             display: flex;
             transition: transform 0.35s ease;
-            will-change: transform;
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -290,6 +298,7 @@
             object-fit: cover;
             object-position: top;
             display: block;
+            image-rendering: auto;
         }
 
         .gallery-main img.contain { object-fit: contain; }
@@ -322,6 +331,23 @@
             object-position: top;
             display: block;
             aspect-ratio: 16 / 10;
+            image-rendering: auto;
+        }
+
+        .gallery-caption {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+            margin: 0;
+            padding: 18px 10px 8px;
+            background: linear-gradient(transparent, rgba(15, 23, 42, 0.72));
+            color: #f1f5f9;
+            font-size: 0.75rem;
+            line-height: 1.4;
+            text-align: left;
+            pointer-events: none;
         }
 
         .thumbs img.contain { object-fit: contain; }
@@ -416,11 +442,14 @@
         .lightbox.open { display: flex; }
 
         .lightbox img {
-            max-width: min(1200px, 100%);
+            max-width: min(1440px, 96vw);
             max-height: 90vh;
+            width: auto;
+            height: auto;
             border-radius: 8px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.4);
             background: #0b1220;
+            image-rendering: auto;
         }
 
         .lightbox-close {
@@ -471,7 +500,7 @@
 <body>
     <div class="wrap">
         <header class="hero">
-            <img class="photo" src="3abbada77cd5c074b39af0f6d78865f3.jpg" alt="金凯奇的照片">
+            <img class="photo" src="3abbada77cd5c074b39af0f6d78865f3.jpg" alt="金凯奇的照片" width="1024" height="1434">
             <div>
                 <h1>金凯奇</h1>
                 <p class="role">计算机科学与技术 · 2026 届应届毕业生 · 温州商学院信息工程学院</p>
@@ -525,9 +554,10 @@
                     <span class="tag plain">scikit-learn</span><span class="tag plain">NumPy / Pandas</span>
                 </dd></div>
                 <div class="skill-row"><dt>工具</dt><dd>
-                    <span class="tag">MySQL</span><span class="tag">Git</span><span class="tag plain">Linux</span>
+                    <span class="tag">MySQL</span><span class="tag">Git</span>
                     <span class="tag plain">VS Code</span>
                 </dd></div>
+                <div class="skill-row"><dt>服务器</dt><dd class="note">熟练使用 Linux 服务器：网站部署上线、模型训练、服务器集群使用</dd></div>
             </dl>
         </section>
 
@@ -557,12 +587,13 @@
                             <p class="pitch">毕业设计：基于改进 TextRank 的中文新闻摘要系统，全栈独立开发。</p>
                             <div class="gallery" data-gallery>
                                 <button type="button" class="gallery-main" data-zoom>
-                                    <img src="assets/projects/news-summary-result.webp" alt="摘要结果、关键词与句子权重">
+                                    <img src="assets/projects/news-summary-result.webp" srcset="assets/projects/news-summary-result.webp 2880w" width="2880" height="1800" sizes="(max-width: 640px) calc(100vw - 40px), 690px" decoding="async" alt="摘要结果、关键词与句子权重">
+                                    <p class="gallery-caption">摘要结果、关键词与句子权重</p>
                                 </button>
                                 <div class="thumbs">
-                                    <button type="button" aria-current="true" data-src="assets/projects/news-summary-result.webp" data-fit="cover" data-caption="摘要结果、关键词与句子权重"><img src="assets/projects/news-summary-result.webp" alt=""></button>
-                                    <button type="button" data-src="assets/projects/news-summary-wordcloud.webp" data-fit="cover" data-caption="关键词词云等四维可视化"><img src="assets/projects/news-summary-wordcloud.webp" alt=""></button>
-                                    <button type="button" data-src="assets/projects/news-summary-input.webp" data-fit="cover" data-caption="粘贴新闻正文，准备生成摘要"><img src="assets/projects/news-summary-input.webp" alt=""></button>
+                                    <button type="button" aria-current="true" data-src="assets/projects/news-summary-result.webp" data-fit="cover" data-caption="摘要结果、关键词与句子权重"><img src="assets/projects/news-summary-result.webp" srcset="assets/projects/news-summary-result.webp 2880w" width="2880" height="1800" sizes="(max-width: 640px) calc(100vw - 40px), 690px" decoding="async" alt="" decoding="async"></button>
+                                    <button type="button" data-src="assets/projects/news-summary-wordcloud.webp" data-fit="cover" data-caption="关键词词云等四维可视化"><img src="assets/projects/news-summary-wordcloud.webp" srcset="assets/projects/news-summary-wordcloud.webp 2880w" width="2880" height="1800" sizes="(max-width: 640px) calc(100vw - 40px), 690px" decoding="async" alt="" decoding="async"></button>
+                                    <button type="button" data-src="assets/projects/news-summary-input.webp" data-fit="cover" data-caption="粘贴新闻正文，准备生成摘要"><img src="assets/projects/news-summary-input.webp" srcset="assets/projects/news-summary-input.webp 2880w" width="2880" height="1800" sizes="(max-width: 640px) calc(100vw - 40px), 690px" decoding="async" alt="" decoding="async"></button>
                                 </div>
                             </div>
                             <ul class="bullets">
@@ -585,21 +616,22 @@
                                     <a href="https://github.com/jaykayelo/pixwave" target="_blank" rel="noopener">GitHub ↗</a>
                                 </div>
                             </div>
-                            <p class="pitch">按天气、日程和偏好自动生成节目单与 DJ 口播。默认 React 18 PWA，另有 Vue 3 前端。</p>
+                            <p class="pitch">按天气、日程和偏好自动生成节目单与 DJ 口播。提供两套不同风格的界面：第一版为 React 18 PWA，第二版为 Vue 3 前端。</p>
                             <div class="gallery" data-gallery>
                                 <button type="button" class="gallery-main" data-zoom>
-                                    <img src="assets/projects/pixwave-now-playing.webp" alt="React PWA：正在播放与 DJ 口播">
+                                    <img src="assets/projects/pixwave-now-playing.webp" srcset="assets/projects/pixwave-now-playing.webp 2880w" width="2880" height="1800" sizes="(max-width: 640px) calc(100vw - 40px), 690px" decoding="async" alt="第一版（React PWA）：深色现代播放页，品红控件与 DJ 口播">
+                                    <p class="gallery-caption">第一版（React PWA）：深色现代播放页，品红控件与 DJ 口播</p>
                                 </button>
                                 <div class="thumbs">
-                                    <button type="button" aria-current="true" data-src="assets/projects/pixwave-now-playing.webp" data-fit="cover" data-caption="React PWA：正在播放与 DJ 口播"><img src="assets/projects/pixwave-now-playing.webp" alt=""></button>
-                                    <button type="button" data-src="assets/projects/pixwave-playlist.webp" data-fit="cover" data-caption="本期歌单与口播穿插"><img src="assets/projects/pixwave-playlist.webp" alt=""></button>
-                                    <button type="button" data-src="assets/projects/pixwave-vue.webp" data-fit="cover" data-caption="Vue 3 像素风前端"><img src="assets/projects/pixwave-vue.webp" alt=""></button>
+                                    <button type="button" aria-current="true" data-src="assets/projects/pixwave-now-playing.webp" data-fit="cover" data-caption="第一版（React PWA）：深色现代播放页，品红控件与 DJ 口播"><img src="assets/projects/pixwave-now-playing.webp" srcset="assets/projects/pixwave-now-playing.webp 2880w" width="2880" height="1800" sizes="(max-width: 640px) calc(100vw - 40px), 690px" decoding="async" alt="" decoding="async"></button>
+                                    <button type="button" data-src="assets/projects/pixwave-playlist.webp" data-fit="cover" data-caption="第一版（React PWA）：本期歌单与口播穿插"><img src="assets/projects/pixwave-playlist.webp" srcset="assets/projects/pixwave-playlist.webp 2880w" width="2880" height="1800" sizes="(max-width: 640px) calc(100vw - 40px), 690px" decoding="async" alt="" decoding="async"></button>
+                                    <button type="button" data-src="assets/projects/pixwave-vue.webp" data-fit="cover" data-caption="第二版（Vue 3）：终端电台风格，绿色等宽时钟与电波等待页"><img src="assets/projects/pixwave-vue.webp" srcset="assets/projects/pixwave-vue.webp 2880w" width="2880" height="1800" sizes="(max-width: 640px) calc(100vw - 40px), 690px" decoding="async" alt="" decoding="async"></button>
                                 </div>
                             </div>
                             <ul class="bullets">
                                 <li>Node.js / Express 组装天气、飞书日程和本地偏好，调用 Claude 或 DeepSeek 生成节目单与口播，并用 WebSocket 推送进度。</li>
                                 <li>未配置的第三方接口会自动降级为 mock，便于在缺少部分 API Key 时完整演示。</li>
-                                <li>双前端：React 18 PWA 为默认启动端，另实现 Vue 3 + Tailwind 版本，支持定时或手动生成。</li>
+                                <li>双前端、两套风格：第一版 React 18 PWA 是深色现代播放器，第二版 Vue 3 是终端电台风格；支持定时或手动生成。</li>
                             </ul>
                             <div class="tech">
                                 <span class="tag plain">Node.js</span><span class="tag plain">React 18</span>
@@ -619,10 +651,11 @@
                             <p class="pitch">把 Codex CLI 的 Responses API 适配到小米 MiMo 的 Chat Completions，并整理接入说明。</p>
                             <div class="gallery" data-gallery>
                                 <button type="button" class="gallery-main" data-zoom>
-                                    <img class="contain" src="assets/projects/codex-mimo-proxy.webp" alt="代理用途与本地启动说明">
+                                    <img class="contain" src="assets/projects/codex-mimo-proxy.webp" srcset="assets/projects/codex-mimo-proxy.webp 2880w" width="2880" height="1800" sizes="(max-width: 640px) calc(100vw - 40px), 690px" decoding="async" alt="代理用途与本地启动说明">
+                                    <p class="gallery-caption">代理用途与本地启动说明</p>
                                 </button>
                                 <div class="thumbs">
-                                    <button type="button" aria-current="true" data-src="assets/projects/codex-mimo-proxy.webp" data-fit="contain" data-caption="代理用途与本地启动说明"><img class="contain" src="assets/projects/codex-mimo-proxy.webp" alt=""></button>
+                                    <button type="button" aria-current="true" data-src="assets/projects/codex-mimo-proxy.webp" data-fit="contain" data-caption="代理用途与本地启动说明"><img class="contain" src="assets/projects/codex-mimo-proxy.webp" srcset="assets/projects/codex-mimo-proxy.webp 2880w" width="2880" height="1800" sizes="(max-width: 640px) calc(100vw - 40px), 690px" decoding="async" alt="" decoding="async"></button>
                                 </div>
                             </div>
                             <ul class="bullets">
@@ -646,11 +679,12 @@
                             <p class="pitch">面向考研 408 数据结构专项的本地练习工具，只保存题号、考点与自评，不复制题干或答案。</p>
                             <div class="gallery" data-gallery>
                                 <button type="button" class="gallery-main" data-zoom>
-                                    <img src="assets/projects/ds408-today.webp" alt="今日练习与到期复做">
+                                    <img src="assets/projects/ds408-today.webp" srcset="assets/projects/ds408-today.webp 2880w" width="2880" height="1800" sizes="(max-width: 640px) calc(100vw - 40px), 690px" decoding="async" alt="今日练习与到期复做">
+                                    <p class="gallery-caption">今日练习与到期复做</p>
                                 </button>
                                 <div class="thumbs">
-                                    <button type="button" aria-current="true" data-src="assets/projects/ds408-today.webp" data-fit="cover" data-caption="今日练习与到期复做"><img src="assets/projects/ds408-today.webp" alt=""></button>
-                                    <button type="button" data-src="assets/projects/ds408-topics.webp" data-fit="cover" data-caption="核心考点地图与掌握状态"><img src="assets/projects/ds408-topics.webp" alt=""></button>
+                                    <button type="button" aria-current="true" data-src="assets/projects/ds408-today.webp" data-fit="cover" data-caption="今日练习与到期复做"><img src="assets/projects/ds408-today.webp" srcset="assets/projects/ds408-today.webp 2880w" width="2880" height="1800" sizes="(max-width: 640px) calc(100vw - 40px), 690px" decoding="async" alt="" decoding="async"></button>
+                                    <button type="button" data-src="assets/projects/ds408-topics.webp" data-fit="cover" data-caption="核心考点地图与掌握状态"><img src="assets/projects/ds408-topics.webp" srcset="assets/projects/ds408-topics.webp 2880w" width="2880" height="1800" sizes="(max-width: 640px) calc(100vw - 40px), 690px" decoding="async" alt="" decoding="async"></button>
                                 </div>
                             </div>
                             <ul class="bullets">
@@ -780,16 +814,24 @@
                     e.stopPropagation();
                     thumbs.forEach((b) => b.removeAttribute("aria-current"));
                     thumb.setAttribute("aria-current", "true");
-                    mainImg.src = thumb.dataset.src;
+                    const src = thumb.dataset.src;
+                    mainImg.src = src;
+                    mainImg.srcset = src + " 2880w";
                     mainImg.alt = thumb.dataset.caption || "";
                     mainImg.classList.toggle("contain", thumb.dataset.fit === "contain");
                     mainBtn.dataset.caption = thumb.dataset.caption || "";
+                    const cap = gallery.querySelector(".gallery-caption");
+                    if (cap) cap.textContent = thumb.dataset.caption || "";
                 });
             });
             mainBtn.addEventListener("click", () => {
                 openLightbox(mainImg.src, mainImg.alt || mainBtn.dataset.caption || "");
             });
-            if (thumbs[0]) mainBtn.dataset.caption = thumbs[0].dataset.caption || "";
+            if (thumbs[0]) {
+                mainBtn.dataset.caption = thumbs[0].dataset.caption || "";
+                const cap = gallery.querySelector(".gallery-caption");
+                if (cap && thumbs[0].dataset.caption) cap.textContent = thumbs[0].dataset.caption;
+            }
         });
 
         const lightbox = document.getElementById("lightbox");
